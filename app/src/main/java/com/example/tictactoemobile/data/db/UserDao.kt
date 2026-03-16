@@ -6,7 +6,7 @@ import com.example.tic_tac_toe_mobile.data.entity.UserEntity
 @Dao
 interface UserDao {
     @Insert(onConflict = OnConflictStrategy.ABORT)
-    suspend fun insert(user: UserEntity): String
+    suspend fun insert(user: UserEntity): Long
 
     @Update
     suspend fun update(user: UserEntity)

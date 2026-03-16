@@ -37,7 +37,7 @@ class DatabaseService @Inject constructor(
         gameDao.update(game)
     }
 
-    suspend fun insertUser(user: UserEntity): String {
+    suspend fun insertUser(user: UserEntity): Long {
         return userDao.insert(user)
     }
 

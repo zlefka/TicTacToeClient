@@ -2,6 +2,7 @@ package com.example.tic_tac_toe_mobile.di
 
 import com.example.tic_tac_toe_mobile.data.api.GameApi
 import com.example.tic_tac_toe_mobile.data.api.RetrofitController
+import com.example.tic_tac_toe_mobile.data.repository.GameRepository
 import dagger.Component
 import dagger.Module
 import dagger.Provides
@@ -14,4 +15,8 @@ class GameApiModule {
         val provider = {Pair(null, null)}
         return RetrofitController.createApi(provider)
     }
+
+    @Provides
+    @Singleton
+    fun provideGameRepository(gameApi: GameApi): GameRepository = GameRepository(gameApi)
 }
