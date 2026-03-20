@@ -21,6 +21,10 @@ class DatabaseService @Inject constructor(
         gameDao.getGameById(id)
     }
 
+    suspend fun getGameByServerId(serverId: String): GameEntity? {
+        return gameDao.getGameByServerId(serverId)
+    }
+
     suspend fun getGamesForUser(userId: String) {
         gameDao.getGamesForUser(userId)
     }

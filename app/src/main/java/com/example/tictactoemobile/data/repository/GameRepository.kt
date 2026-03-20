@@ -1,83 +1,73 @@
-package com.example.tic_tac_toe_mobile.data.repository
+package com.example.tictactoemobile.data.repository
 
-import android.util.Log
-import com.example.tic_tac_toe_mobile.data.api.GameApi
-import com.example.tic_tac_toe_mobile.data.dto.*
-import javax.inject.Inject
+import com.example.tic_tac_toe_mobile.data.db.service.DatabaseService
+import com.example.tic_tac_toe_mobile.data.repository.RemoteDataSource
+import com.example.tictactoemobile.data.mapper.toDomain
+import com.example.tictactoemobile.data.mapper.toDto
+import com.example.tictactoemobile.data.mapper.toEntity
+import com.example.tictactoemobile.domain.model.Game
+import com.example.tictactoemobile.domain.model.Move
+import com.example.tictactoemobile.domain.model.User
 
-private const val TAG = "GameService"
-
-class GameRepository @Inject constructor (private val gameApi: GameApi) {
-
-    suspend fun createGame(): GameDto? {
-        return try {
-            gameApi.newGame()
-        } catch (e: java.lang.Exception) {
-            Log.e(TAG, "Can't create new game", e)
-            null
+class GameRepository(
+    private val remoteDataSource: RemoteDataSource,
+    private val databaseService: DatabaseService
+) {
+    suspend fun getGame(id: String): Game? {
+        val gameDto = remoteDataSource.getGame(id)
+        if (gameDto != null) {
+            val game = gameDto.toDomain()
+            val gameEntity = game.toEntity()
+            databaseService.saveGame(gameEntity)
+            return game
+        } else {
+            val gameEntityDB = databaseService.getGameByServerId(id)
+            val gameDB = gameEntityDB?.toDomain()
+            return gameDB
         }
     }
 
-    suspend fun signUp(requestDto: SignUpRequestDto): SignUpResponseDto? {
-        return try {
-            gameApi.registerUser(requestDto)
-        } catch (e: java.lang.Exception) {
-            Log.e(TAG, "Can't create a new user", e)
-            null
+    suspend fun createGame(): Game? {
+        val newGame = remoteDataSource.createGame() ?: return null
+        val gameDomain = newGame.toDomain()
+        val gameEntity = gameDomain.toEntity()
+        databaseService.saveGame(gameEntity)
+        return gameDomain
+
+    }
+
+    suspend fun joinGame(id: String): Game? {
+        val join = remoteDataSource.joinGame(id)
+        if (join != null) {
+            val gameDomain = join.toDomain()
+            val gameEntity = gameDomain.toEntity()
+            databaseService.updateGame(gameEntity)
+            return gameDomain
+        } else {
+            val gameEntityDB = databaseService.getGameByServerId(id) ?: return null
+            return gameEntityDB.toDomain()
         }
     }
 
-    suspend fun login(request: LoginRequestDto): LoginResponseDto? {
-        return try {
-            gameApi.loginUser(request)
-        } catch (e: java.lang.Exception) {
-            Log.e(TAG, "Login error", e)
-            null
+    suspend fun getAvailableGames(): List<Game> {
+        val games = remoteDataSource.availableGames()
+        return if(games != null) {
+            val domainGames = games.map { it.toDomain() }
+            val gameEntities = domainGames.map { it.toEntity() }
+            gameEntities.forEach{databaseService.saveGame(it)}
+            domainGames
+        } else {
+            val gamesList = databaseService.getGamesByStatus("WAITING")
+            gamesList.map { it.toDomain() }
         }
     }
 
-    suspend fun getGame(id: String): GameDto? {
-        return try {
-            gameApi.getGameById(id)
-        } catch (e: java.lang.Exception) {
-            Log.e(TAG, "Can't get the game", e)
-            null
-        }
-    }
-
-    suspend fun availableGames(): List<GameDto>? {
-        return try {
-            gameApi.availableGames()
-        } catch (e: java.lang.Exception) {
-            Log.e(TAG, "Can't get available games", e)
-            null
-        }
-    }
-
-    suspend fun getUser(id: String): UserDto? {
-        return try {
-            gameApi.getUserById(id)
-        } catch (e: java.lang.Exception) {
-            Log.e(TAG, "Can't get this user", e)
-            null
-        }
-    }
-
-    suspend fun joinGame(id: String): GameDto? {
-        return try {
-            gameApi.joinGame(id)
-        } catch (e: java.lang.Exception) {
-            Log.e(TAG, "Can't join the game", e)
-            null
-        }
-    }
-
-    suspend fun makeMove(id: String, move: MoveDto): GameDto? {
-        return try {
-            gameApi.makeMove(id, move)
-        } catch (e: java.lang.Exception) {
-            Log.e(TAG, "Can't make move", e)
-            null
-        }
+    suspend fun makeMove(id: String, move: Move): Game? {
+        val moveDto = move.toDto()
+        val updatedGame = remoteDataSource.makeMove(id, moveDto) ?: return null
+        val gameDomain = updatedGame.toDomain()
+        val gameEntity = gameDomain.toEntity()
+        databaseService.updateGame(gameEntity)
+        return gameDomain
     }
 }
