@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TicTacToeMobile</string>
+    <string name="shr_hint_username">Логин</string>
+    <string name="shr_hint_password">Пароль</string>
+    <string name="tic_tac_toe">Крестики-Нолики</string>
+    <string name="sign_in_to_start_playing">Для начала игры войдите</string>
+    <string name="login">Логин</string>
+    <string name="enter_your_login">Ведите логин</string>
+    <string name="password">Пароль</string>
+    <string name="enter_your_password">Введите пароль</string>
+    <string name="sign_up">Войти</string>
+    <string name="register">Зарегистрироваться</string>
+</resources>

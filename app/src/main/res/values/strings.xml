@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">TicTacToeMobile</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="shr_hint_username">Username</string>
+    <string name="shr_hint_password">Password</string>
+    <string name="x_symbol" translatable="false">X symbol</string>
+    <string name="tic_tac_toe">Tic Tac Toe</string>
+    <string name="o_symbol" translatable="false">O symbol</string>
+    <string name="sign_in_to_start_playing">Sign in to start playing</string>
+    <string name="login">Login</string>
+    <string name="enter_your_login">Enter your login</string>
+    <string name="password">Password</string>
+    <string name="enter_your_password">Enter your password</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="register">Register</string>
 </resources>
