@@ -2,8 +2,7 @@ package com.example.tic_tac_toe_mobile.di
 
 import com.example.tic_tac_toe_mobile.data.api.GameApi
 import com.example.tic_tac_toe_mobile.data.api.RetrofitController
-import com.example.tic_tac_toe_mobile.data.repository.GameRepository
-import dagger.Component
+import com.example.tic_tac_toe_mobile.data.repository.RemoteDataSource
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -18,5 +17,5 @@ class GameApiModule {
 
     @Provides
     @Singleton
-    fun provideGameRepository(gameApi: GameApi): GameRepository = GameRepository(gameApi)
+    fun provideRemoteDataSource(gameApi: GameApi): RemoteDataSource = RemoteDataSource(gameApi)
 }

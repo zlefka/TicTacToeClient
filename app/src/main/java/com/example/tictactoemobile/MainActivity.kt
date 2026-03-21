@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.tic_tac_toe_mobile.R
 import com.example.tictactoemobile.di.AppModule
-import com.example.tictactoemobile.di.DatabaseModule
 import com.example.tictactoemobile.di.DaggerAppComponent
 
 class MainActivity : AppCompatActivity() {
@@ -13,7 +12,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val component = DaggerAppComponent.builder().appModule(AppModule(applicationContext)).build()
-        val repository = component.getGameRepository()
+        val repository = component.remoteDataSource()
         val dbService = component.getDatabaseService()
     }
 }
