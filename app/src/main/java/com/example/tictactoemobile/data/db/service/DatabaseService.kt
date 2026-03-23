@@ -6,6 +6,7 @@ import com.example.tic_tac_toe_mobile.data.db.UserDao
 import com.example.tic_tac_toe_mobile.data.entity.CurrentUserEntity
 import com.example.tic_tac_toe_mobile.data.entity.GameEntity
 import com.example.tic_tac_toe_mobile.data.entity.UserEntity
+import com.example.tictactoemobile.domain.model.CurrentUser
 import javax.inject.Inject
 
 class DatabaseService @Inject constructor(
@@ -83,6 +84,12 @@ class DatabaseService @Inject constructor(
 
     suspend fun updateEnterTime(time: Long = System.currentTimeMillis()) {
         currentUserDao.updateEnterTime(time)
+    }
+
+    suspend fun clearAll() {
+        gameDao.clear()
+        userDao.clear()
+        currentUserDao.clear()
     }
 
 }

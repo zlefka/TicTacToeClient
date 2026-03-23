@@ -14,6 +14,10 @@ class AuthRepository(private val remoteDataSource: RemoteDataSource,
     suspend fun login(login: String, password: String): User?{
         val request = LoginRequestDto(login, password)
         val response = remoteDataSource.login(request) ?: return null
+        val currentUser = databaseService.getCurrentUser()
+        if(currentUser != null && currentUser.userId != response.id) {
+            databaseService.clearAll()
+        }
         val user = User(response.id, login)
         val userEntity = UserEntity(serverId = response.id, login = login, password = password)
         databaseService.insertUser(userEntity)
@@ -22,7 +26,7 @@ class AuthRepository(private val remoteDataSource: RemoteDataSource,
         return user
     }
 
-    suspend fun signUp(login: String, password: String): User? {
+    suspend fun signIn(login: String, password: String): User? {
         val request = SignUpRequestDto(login, password)
         val response = remoteDataSource.signUp(request) ?: return null
         return if(response.success) login(login, password) else null

@@ -14,6 +14,9 @@ interface CurrentUserDao {
     @Delete
     suspend fun delete(currentUser: CurrentUserEntity)
 
+    @Query("DELETE FROM current_user")
+    suspend fun clear()
+
     @Query("UPDATE current_user SET last_login = :time WHERE id = 1")
     suspend fun updateEnterTime(time: Long = System.currentTimeMillis())
 }
