@@ -14,7 +14,6 @@ import javax.inject.Singleton
 interface AppComponent {
     fun getDatabaseService(): DatabaseService
     fun remoteDataSource(): RemoteDataSource
-
     fun getGameRepository(): GameRepository
     fun getAuthRepository(): AuthRepository
     fun getUserRepository(): UserRepository

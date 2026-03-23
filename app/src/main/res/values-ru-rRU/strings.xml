@@ -9,6 +9,6 @@
     <string name="enter_your_login">Ведите логин</string>
     <string name="password">Пароль</string>
     <string name="enter_your_password">Введите пароль</string>
-    <string name="sign_up">Войти</string>
-    <string name="register">Зарегистрироваться</string>
+    <string name="sign_in">Войти</string>
+    <string name="register">Нет аккаунта? Зарегистрироваться</string>
 </resources>
