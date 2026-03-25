@@ -10,6 +10,7 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.tic_tac_toe_mobile.databinding.FragmentLoginBinding
 import com.example.tictactoemobile.MainActivity
 import com.example.tictactoemobile.presentation.viewmodel.LoginFragmentViewModel
@@ -47,8 +48,10 @@ class LoginFragment : Fragment() {
                     Toast.makeText(activity, "Password error", Toast.LENGTH_SHORT).show()
                 }
                 StatesOfLogin.Loading -> binding.progressBar.isVisible = true
-                StatesOfLogin.Success -> {
+                is StatesOfLogin.Success -> {
+                    val user = newValue.user
                     binding.progressBar.isVisible = false
+                    Toast.makeText(activity, "Hello, ${user.login}", Toast.LENGTH_SHORT).show()
                     val action = LoginFragmentDirections.actionLoginFragmentToExistingGamesFragment()
                     view.findNavController().navigate(action)
                 }
@@ -62,6 +65,11 @@ class LoginFragment : Fragment() {
             val login = binding.etLogin.text.toString()
             val password = binding.etPassword.text.toString()
             viewModel.validate(login, password)
+        }
+
+        binding.tvRegister.setOnClickListener {
+            val action = LoginFragmentDirections.actionLoginFragmentToSignupFragment()
+            view.findNavController().navigate(action)
         }
     }
 
