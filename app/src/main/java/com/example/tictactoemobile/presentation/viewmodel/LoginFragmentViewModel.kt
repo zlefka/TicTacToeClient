@@ -30,7 +30,7 @@ class LoginFragmentViewModel(private val repository: AuthRepository): ViewModel(
                     _state.value = StatesOfLogin.Success(viewData)
                 } else _state.value = StatesOfLogin.Error("User is not found")
             } catch (e: Exception) {
-                e.message ?: "Unknown error"
+                _state.value = StatesOfLogin.Error(e.message ?: "Unknown error")
             }
         }
     }

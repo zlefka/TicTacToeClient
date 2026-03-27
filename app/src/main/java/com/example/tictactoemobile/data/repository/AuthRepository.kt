@@ -26,9 +26,13 @@ class AuthRepository(private val remoteDataSource: RemoteDataSource,
         return user
     }
 
-    suspend fun signIn(login: String, password: String): User? {
+    suspend fun signUp(login: String, password: String): User? {
         val request = SignUpRequestDto(login, password)
         val response = remoteDataSource.signUp(request) ?: return null
         return if(response.success) login(login, password) else null
+    }
+
+    suspend fun isLoginAlreadyExists(login: String): Boolean {
+        return databaseService.isLoginExists(login)
     }
 }
