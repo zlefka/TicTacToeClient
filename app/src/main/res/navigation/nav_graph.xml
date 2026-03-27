@@ -13,10 +13,23 @@
         <action
             android:id="@+id/action_loginFragment_to_existingGamesFragment"
             app:destination="@id/existingGamesFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_signupFragment"
+            app:destination="@+id/signupFragment"/>
     </fragment>
     <fragment
         android:id="@+id/existingGamesFragment"
         android:name="com.example.tictactoemobile.presentation.ui.ExistingGamesFragment"
         android:label="fragment_exisiting_games"
         tools:layout="@layout/fragment_exisiting_games" />
+    <fragment
+        android:id="@+id/signupFragment"
+        android:name="com.example.tictactoemobile.presentation.ui.SignupFragment"
+        android:label="SignupFragment"
+        tools:layout="@layout/fragment_login">
+
+        <action
+            android:id="@+id/action_signupFragment_to_loginFragment"
+            app:destination="@+id/loginFragment"/>
+    </fragment>
 </navigation>

@@ -11,4 +11,7 @@
     <string name="enter_your_password">Введите пароль</string>
     <string name="sign_in">Войти</string>
     <string name="register">Нет аккаунта? Зарегистрироваться</string>
+    <string name="create_account">Регистрация</string>
+    <string name="confirm_password">Подтвердите пароль</string>
+    <string name="already_have_an_account_sign_in">Уже есть аккаунт? Войдите!</string>
 </resources>
