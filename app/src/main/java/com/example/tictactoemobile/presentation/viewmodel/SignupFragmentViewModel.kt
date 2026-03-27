@@ -1,5 +1,6 @@
 package com.example.tictactoemobile.presentation.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -21,7 +22,10 @@ class SignupFragmentViewModel(private val repository: AuthRepository) : ViewMode
             else {
 
                 val exists = repository.isLoginAlreadyExists(login)
-                if (exists) _state.value = StatesOfSignup.LoginAlreadyExists
+                if (exists) {
+                    Log.i("Exists", "Login Exists")
+                    _state.value = StatesOfSignup.LoginAlreadyExists
+                }
                 else signup(login, password)
             }
 
@@ -31,11 +35,14 @@ class SignupFragmentViewModel(private val repository: AuthRepository) : ViewMode
     suspend fun signup(login: String, password: String) {
         _state.value = StatesOfSignup.Loading
         try {
-            val user = repository.signUp(login, password)
-            if (user != null) {
-                val viewData = user.toViewData()
-                _state.value = StatesOfSignup.Success(viewData)
-            } else _state.value = StatesOfSignup.LoginAlreadyExists
+            val success = repository.signUp(login, password)
+            if (success) {
+                Log.i("Exists", "User is NOT null")
+                _state.value = StatesOfSignup.Success
+            } else {
+                Log.i("Exists", "User is null")
+                _state.value = StatesOfSignup.LoginAlreadyExists
+            }
         } catch (e: Exception) {
             _state.value = StatesOfSignup.Error(e.message ?: "Unknown error")
         }

@@ -10,9 +10,7 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import com.example.tic_tac_toe_mobile.databinding.FragmentLoginBinding
-import com.example.tictactoemobile.MainActivity
 import com.example.tictactoemobile.presentation.viewmodel.LoginFragmentViewModel
 import com.example.tictactoemobile.presentation.viewmodel.LoginFragmentViewModelFactory
 import com.example.tictactoemobile.presentation.viewmodel.StatesOfLogin

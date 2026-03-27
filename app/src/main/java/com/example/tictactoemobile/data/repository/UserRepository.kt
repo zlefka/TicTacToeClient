@@ -16,7 +16,7 @@ class UserRepository (private val remoteDataSource: RemoteDataSource,
     }
 
     suspend fun getUserById(id: String): User? {
-        val localUser = databaseService.getUserById(id)
+        val localUser = databaseService.getUserByServerId(id)
         if (localUser != null) return localUser.toDomain()
 
         val remoteUserDto = remoteDataSource.getUser(id) ?: return null

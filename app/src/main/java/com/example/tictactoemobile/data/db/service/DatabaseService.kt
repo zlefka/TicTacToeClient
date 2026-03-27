@@ -1,12 +1,12 @@
 package com.example.tic_tac_toe_mobile.data.db.service
 
+import android.util.Log
 import com.example.tic_tac_toe_mobile.data.db.CurrentUserDao
 import com.example.tic_tac_toe_mobile.data.db.GameDao
 import com.example.tic_tac_toe_mobile.data.db.UserDao
 import com.example.tic_tac_toe_mobile.data.entity.CurrentUserEntity
 import com.example.tic_tac_toe_mobile.data.entity.GameEntity
 import com.example.tic_tac_toe_mobile.data.entity.UserEntity
-import com.example.tictactoemobile.domain.model.CurrentUser
 import javax.inject.Inject
 
 class DatabaseService @Inject constructor(
@@ -43,6 +43,7 @@ class DatabaseService @Inject constructor(
     }
 
     suspend fun insertUser(user: UserEntity): Long {
+        Log.d("DB", "INSERT USER: " + user.id);
         return userDao.insert(user)
     }
 
@@ -58,7 +59,11 @@ class DatabaseService @Inject constructor(
         return userDao.getUserByLogin(login)
     }
 
-    suspend fun getUserById(userId: String): UserEntity? {
+    suspend fun getUserByServerId(userId: String): UserEntity? {
+        return userDao.getUserByServerId(userId)
+    }
+
+    suspend fun getUserById(userId: Long): UserEntity? {
         return userDao.getUserById(userId)
     }
 

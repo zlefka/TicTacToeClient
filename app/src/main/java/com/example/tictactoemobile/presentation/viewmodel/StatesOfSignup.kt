@@ -1,9 +1,7 @@
 package com.example.tictactoemobile.presentation.viewmodel
 
-import com.example.tictactoemobile.presentation.model.UserViewData
-
 sealed class StatesOfSignup {
-    data class Success(val user: UserViewData) : StatesOfSignup()
+    object Success: StatesOfSignup()
     object LoginError: StatesOfSignup()
     object LoginAlreadyExists: StatesOfSignup()
     object PasswordError: StatesOfSignup()

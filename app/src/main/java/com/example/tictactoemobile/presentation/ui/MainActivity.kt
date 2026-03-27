@@ -1,4 +1,4 @@
-package com.example.tictactoemobile
+package com.example.tictactoemobile.presentation.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

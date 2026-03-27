@@ -19,12 +19,7 @@ class RemoteDataSource @Inject constructor (private val gameApi: GameApi) {
     }
 
     suspend fun signUp(requestDto: SignUpRequestDto): SignUpResponseDto? {
-        return try {
-            gameApi.registerUser(requestDto)
-        } catch (e: java.lang.Exception) {
-            Log.e(TAG, "Can't create a new user", e)
-            null
-        }
+        return gameApi.registerUser(requestDto)
     }
 
     suspend fun login(request: LoginRequestDto): LoginResponseDto? {

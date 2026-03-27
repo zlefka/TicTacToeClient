@@ -9,15 +9,11 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.get
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
-import com.example.tic_tac_toe_mobile.R
 import com.example.tic_tac_toe_mobile.databinding.FragmentSignupBinding
-import com.example.tictactoemobile.MainActivity
 import com.example.tictactoemobile.presentation.viewmodel.SignupFragmentViewModel
 import com.example.tictactoemobile.presentation.viewmodel.SignupFragmentViewModelFactory
-import com.example.tictactoemobile.presentation.viewmodel.StatesOfLogin
 import com.example.tictactoemobile.presentation.viewmodel.StatesOfSignup
 
 class SignupFragment : Fragment() {
@@ -59,8 +55,7 @@ class SignupFragment : Fragment() {
                     Toast.makeText(activity, "Passwords are different", Toast.LENGTH_SHORT).show()
                 }
                 StatesOfSignup.Loading -> binding.progressBar.isVisible = true
-                is StatesOfSignup.Success -> {
-                    val user = newValue.user
+                StatesOfSignup.Success -> {
                     binding.progressBar.isVisible = false
                     Toast.makeText(activity, "Success, sign in.", Toast.LENGTH_SHORT).show()
                     val action = SignupFragmentDirections.actionSignupFragmentToLoginFragment()
