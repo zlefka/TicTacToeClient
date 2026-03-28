@@ -17,4 +17,11 @@
     <string name="create_account">Create Account</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="already_have_an_account_sign_in">Already have an account? Sign In</string>
+    <string name="available_games">Available games</string>
+    <string name="select_game_subtitle">Select a game to join or create a new one</string>
+    <string name="create_game">Create game</string>
+    <string name="logout">Logout</string>
+    <string name="no_games_available">No available games</string>
+    <string name="create_game_prompt">Create a new game to start playing</string>
+    <string name="waiting_for_player">Waiting for player</string>
 </resources>
