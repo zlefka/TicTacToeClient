@@ -11,7 +11,7 @@ import com.example.tictactoemobile.presentation.model.ItemViewData
 class ItemAdapter: RecyclerView.Adapter<ItemAdapter.ItemHolder>() {
     private val items = mutableListOf<ItemViewData>()
     class ItemHolder(item: View): RecyclerView.ViewHolder(item) {
-        val binding = ItemGameBinding.bind(item)
+        private val binding = ItemGameBinding.bind(item)
         fun bind(gameItem: ItemViewData) = with(binding) {
             tvGameCreator.text = gameItem.login
             tvGameId.text = gameItem.id
