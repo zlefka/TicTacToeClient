@@ -28,8 +28,8 @@
                 android:layout_marginBottom="8dp">
 
                 <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:src="@drawable/ic_cross"
                     android:contentDescription="X symbol" />
 
@@ -43,8 +43,8 @@
                     android:textStyle="bold" />
 
                 <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:src="@drawable/ic_circle"
                     android:contentDescription="O symbol" />
 
@@ -129,7 +129,7 @@
                 <ImageView
                     android:layout_width="120dp"
                     android:layout_height="120dp"
-                    android:src="@drawable/ic_circle"
+                    android:src="@drawable/ic_cross"
                     android:alpha="0.3"
                     android:contentDescription="No games" />
 

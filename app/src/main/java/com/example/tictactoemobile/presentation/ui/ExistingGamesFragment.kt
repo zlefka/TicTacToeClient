@@ -42,6 +42,9 @@ class ExistingGamesFragment : Fragment() {
 
         viewModel.games.observe(viewLifecycleOwner, Observer { newValue ->
             adapter.setItems(newValue)
+            
+            binding.emptyStateLayout.visibility =
+                if (newValue.isEmpty()) View.VISIBLE else View.GONE
         })
 
         viewModel.getGames()
