@@ -45,7 +45,12 @@ class ExistingGamesFragment : Fragment() {
             
             binding.emptyStateLayout.visibility =
                 if (newValue.isEmpty()) View.VISIBLE else View.GONE
+
+            binding.swipeRefreshLayout.isRefreshing = false
         })
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            viewModel.getGames()
+        }
 
         viewModel.getGames()
     }
