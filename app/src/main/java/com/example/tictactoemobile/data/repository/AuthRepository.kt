@@ -7,11 +7,13 @@ import com.example.tic_tac_toe_mobile.data.dto.SignUpRequestDto
 import com.example.tic_tac_toe_mobile.data.entity.CurrentUserEntity
 import com.example.tic_tac_toe_mobile.data.entity.UserEntity
 import com.example.tic_tac_toe_mobile.data.repository.RemoteDataSource
+import com.example.tictactoemobile.data.api.SessionManager
 import com.example.tictactoemobile.domain.model.User
 
 class AuthRepository(
     private val remoteDataSource: RemoteDataSource,
-    private val databaseService: DatabaseService
+    private val databaseService: DatabaseService,
+    private val sessionManager: SessionManager
 ) {
     suspend fun login(login: String, password: String): User? {
 
@@ -39,6 +41,9 @@ class AuthRepository(
 
         val currentUserEntity = CurrentUserEntity(userId = userEntity.id)
         databaseService.insertOrReplace(currentUserEntity)
+
+        sessionManager.login = login
+        sessionManager.password = password
 
         return User(userEntity.serverId ?: "", userEntity.login)
 

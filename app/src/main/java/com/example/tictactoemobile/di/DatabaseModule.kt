@@ -7,6 +7,7 @@ import com.example.tic_tac_toe_mobile.data.db.CurrentUserDao
 import com.example.tic_tac_toe_mobile.data.db.GameDao
 import com.example.tic_tac_toe_mobile.data.db.UserDao
 import com.example.tic_tac_toe_mobile.data.db.service.DatabaseService
+import com.example.tictactoemobile.data.api.SessionManager
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -16,7 +17,7 @@ class DatabaseModule {
     @Provides
     @Singleton
     fun provideDatabase(context: Context): AppDatabase {
-        return Room.databaseBuilder(context, AppDatabase::class.java, "tic_tac_toe_db").build()
+        return Room.databaseBuilder(context, AppDatabase::class.java, "tic_tac_toe_db").fallbackToDestructiveMigration().build()
     }
 
     @Provides
@@ -52,4 +53,10 @@ class AppModule(private val context: Context) {
     @Provides
     @Singleton
     fun provideContext(): Context = context
+
+    @Provides
+    @Singleton
+    fun provideSessionManager(): SessionManager {
+        return SessionManager()
+    }
 }
