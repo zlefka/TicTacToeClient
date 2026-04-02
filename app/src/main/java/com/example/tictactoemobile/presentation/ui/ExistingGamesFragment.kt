@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tic_tac_toe_mobile.R
 import com.example.tic_tac_toe_mobile.databinding.FragmentExisitingGamesBinding
@@ -50,6 +51,15 @@ class ExistingGamesFragment : Fragment() {
         })
         binding.swipeRefreshLayout.setOnRefreshListener {
             viewModel.getGames()
+        }
+        binding.buttonLogout.setOnClickListener {
+            val action = ExistingGamesFragmentDirections.actionExistingGamesFragmentToLoginFragment()
+            view.findNavController().navigate(action)
+        }
+
+        binding.buttonCreateGame.setOnClickListener {
+            val action = ExistingGamesFragmentDirections.actionExistingGamesFragmentToCreateGameFragment()
+            view.findNavController().navigate(action)
         }
 
         viewModel.getGames()
