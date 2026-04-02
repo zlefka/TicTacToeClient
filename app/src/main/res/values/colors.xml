@@ -11,5 +11,6 @@
     <color name="background">#233D4D</color>
     <color name="elements">#FE7F2D</color>
     <color name="hint_color">#99233D4D</color>
+    <color name="gray">#D3D3D3</color>
 
 </resources>
