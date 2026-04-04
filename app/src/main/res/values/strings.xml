@@ -24,4 +24,5 @@
     <string name="no_games_available">No available games</string>
     <string name="create_game_prompt">Create a new game to start playing</string>
     <string name="waiting_for_player">Waiting for player</string>
+    <string name="choose_options">Choose your options</string>
 </resources>

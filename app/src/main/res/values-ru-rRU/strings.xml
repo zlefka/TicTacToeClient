@@ -14,4 +14,12 @@
     <string name="create_account">Регистрация</string>
     <string name="confirm_password">Подтвердите пароль</string>
     <string name="already_have_an_account_sign_in">Уже есть аккаунт? Войдите!</string>
+    <string name="available_games">Доступные игры</string>
+    <string name="select_game_subtitle">Выберите или создайте игру</string>
+    <string name="create_game">Создать игру</string>
+    <string name="logout">Выйти</string>
+    <string name="no_games_available">Нет доступных игр</string>
+    <string name="create_game_prompt">Создайте новую игру</string>
+    <string name="waiting_for_player">Ожидает игрока</string>
+    <string name="choose_options">Выберите конфигурацию</string>
 </resources>
