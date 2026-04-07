@@ -70,4 +70,8 @@ class GameRepository(
         databaseService.updateGame(gameEntity)
         return gameDomain
     }
+
+    suspend fun clearDatabase() {
+        databaseService.clearAll()
+    }
 }

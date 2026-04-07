@@ -13,14 +13,28 @@ class ExistingGamesFragmentViewModel(private val repository: GameRepository) : V
     private val _games = MutableLiveData<List<ItemViewData>>()
     val games: LiveData<List<ItemViewData>> get() = _games
 
+    private val _error = MutableLiveData<String>()
+    val error: LiveData<String> get() = _error
+
+    private val _logoutCompleted = MutableLiveData<Unit>()
+    val logoutCompleted: LiveData<Unit> = _logoutCompleted
+
     fun getGames(){
         viewModelScope.launch {
             try {
                 val gamesRepository = repository.getAvailableGames()
                 _games.value = gamesRepository.map {it.toViewData()}
             } catch (e: Exception) {
-                e.message ?: "Unknown error"
+                _error.value = e.message ?: "Unknown error"
             }
         }
     }
+
+    fun logout() {
+        viewModelScope.launch {
+            repository.clearDatabase()
+            _logoutCompleted.postValue(Unit)
+        }
+    }
+
 }

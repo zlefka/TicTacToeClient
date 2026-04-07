@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
@@ -21,7 +22,7 @@ import com.example.tictactoemobile.presentation.viewmodel.LoginFragmentViewModel
 class ExistingGamesFragment : Fragment() {
     private var _binding: FragmentExisitingGamesBinding? = null
     private val binding get() = _binding!!
-    lateinit var viewModel: ExistingGamesFragmentViewModel
+    private lateinit var viewModel: ExistingGamesFragmentViewModel
     private lateinit var adapter: ItemAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,12 +50,22 @@ class ExistingGamesFragment : Fragment() {
 
             binding.swipeRefreshLayout.isRefreshing = false
         })
+
+        viewModel.error.observe(viewLifecycleOwner, Observer { message ->
+            Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
+            binding.swipeRefreshLayout.isRefreshing = false
+        })
+
+        viewModel.logoutCompleted.observe(viewLifecycleOwner, Observer {
+            val action = ExistingGamesFragmentDirections.actionExistingGamesFragmentToLoginFragment()
+            view.findNavController().navigate(action)
+        })
+
         binding.swipeRefreshLayout.setOnRefreshListener {
             viewModel.getGames()
         }
         binding.buttonLogout.setOnClickListener {
-            val action = ExistingGamesFragmentDirections.actionExistingGamesFragmentToLoginFragment()
-            view.findNavController().navigate(action)
+            viewModel.logout()
         }
 
         binding.buttonCreateGame.setOnClickListener {
@@ -63,5 +74,10 @@ class ExistingGamesFragment : Fragment() {
         }
 
         viewModel.getGames()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }
