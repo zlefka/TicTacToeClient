@@ -33,7 +33,7 @@
         android:id="@+id/signupFragment"
         android:name="com.example.tictactoemobile.presentation.ui.SignupFragment"
         android:label="SignupFragment"
-        tools:layout="@layout/fragment_login">
+        tools:layout="@layout/fragment_signup">
 
         <action
             android:id="@+id/action_signupFragment_to_loginFragment"
@@ -42,5 +42,18 @@
     <fragment
         android:id="@+id/createGameFragment"
         android:name="com.example.tictactoemobile.presentation.ui.CreateGameFragment"
-        android:label="CreateGameFragment" />
+        android:label="CreateGameFragment"
+        tools:layout="@layout/fragment_create_game">
+        <action
+            android:id="@+id/action_createGameFragment_to_currentGameFragment"
+            app:destination="@id/currentGameFragment" />
+        <action
+            android:id="@+id/action_createGameFragment_to_existingGamesFragment"
+            app:destination="@id/existingGamesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/currentGameFragment"
+        android:name="com.example.tictactoemobile.presentation.ui.CurrentGameFragment"
+        android:label="fragment_current_game"
+        tools:layout="@layout/fragment_current_game" />
 </navigation>
