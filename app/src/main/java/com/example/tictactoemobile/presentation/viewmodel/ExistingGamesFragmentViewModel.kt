@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.tictactoemobile.data.repository.GameRepository
-import com.example.tictactoemobile.presentation.mapper.toViewData
+import com.example.tictactoemobile.presentation.mapper.toItemViewData
 import com.example.tictactoemobile.presentation.model.ItemViewData
 import kotlinx.coroutines.launch
 
@@ -23,7 +23,7 @@ class ExistingGamesFragmentViewModel(private val repository: GameRepository) : V
         viewModelScope.launch {
             try {
                 val gamesRepository = repository.getAvailableGames()
-                _games.value = gamesRepository.map {it.toViewData()}
+                _games.value = gamesRepository.map {it.toItemViewData()}
             } catch (e: Exception) {
                 _error.value = e.message ?: "Unknown error"
             }

@@ -31,21 +31,21 @@ class AuthRepository(
                 login = login,
                 password = password
             )
-            val newId = databaseService.insertUser(newUser)
-            newUser.copy(id = newId)
+            databaseService.insertUser(newUser)
+            newUser
         }
 
-        if (currentUser != null && currentUser.userId != userEntity.id) {
+        if (currentUser != null && currentUser.userId != userEntity.serverId) {
             databaseService.clearAll()
         }
 
-        val currentUserEntity = CurrentUserEntity(userId = userEntity.id)
+        val currentUserEntity = CurrentUserEntity(userId = userEntity.serverId)
         databaseService.insertOrReplace(currentUserEntity)
 
         sessionManager.login = login
         sessionManager.password = password
 
-        return User(userEntity.serverId ?: "", userEntity.login)
+        return User(userEntity.serverId, userEntity.login)
 
     }
 

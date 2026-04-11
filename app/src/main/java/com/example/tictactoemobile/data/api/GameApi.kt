@@ -1,6 +1,7 @@
 package com.example.tic_tac_toe_mobile.data.api
 
 import com.example.tic_tac_toe_mobile.data.dto.*
+import com.example.tictactoemobile.data.dto.GameRequestDto
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -14,7 +15,7 @@ interface GameApi {
     suspend fun loginUser(@Body request: LoginRequestDto): LoginResponseDto
 
     @POST("/game/new")
-    suspend fun newGame(): GameDto
+    suspend fun newGame(@Body request: GameRequestDto): GameDto
 
     @GET("/game/{id}")
     suspend fun getGameById(@Path("id") id: String): GameDto
