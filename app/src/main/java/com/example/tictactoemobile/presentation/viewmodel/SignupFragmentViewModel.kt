@@ -6,7 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.tictactoemobile.data.repository.AuthRepository
-import com.example.tictactoemobile.presentation.mapper.toViewData
 import kotlinx.coroutines.launch
 
 class SignupFragmentViewModel(private val repository: AuthRepository) : ViewModel() {

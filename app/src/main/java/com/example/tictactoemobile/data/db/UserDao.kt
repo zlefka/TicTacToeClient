@@ -5,8 +5,8 @@ import com.example.tic_tac_toe_mobile.data.entity.UserEntity
 
 @Dao
 interface UserDao {
-    @Insert(onConflict = OnConflictStrategy.ABORT)
-    suspend fun insert(user: UserEntity): Long
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insert(user: UserEntity)
 
     @Update
     suspend fun update(user: UserEntity)
@@ -20,8 +20,8 @@ interface UserDao {
     @Query("SELECT * FROM users WHERE login = :login")
     suspend fun getUserByLogin(login: String): UserEntity?
 
-    @Query("SELECT * FROM users WHERE id = :userId")
-    suspend fun getUserById(userId: Long): UserEntity?
+    @Query("SELECT * FROM users WHERE server_id = :userId")
+    suspend fun getUserById(userId: String): UserEntity?
     @Query("SELECT * FROM users WHERE server_id = :userId")
     suspend fun getUserByServerId(userId: String): UserEntity?
 

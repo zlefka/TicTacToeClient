@@ -13,7 +13,7 @@ fun User.toDto(): UserDto {
 }
 
 fun UserEntity.toDomain(): User {
-    val domainId = serverId ?: id.toString()
+    val domainId = serverId
     return User(id = domainId, login = login)
 }
 
@@ -23,7 +23,6 @@ fun User.toEntity(
     createdAt: Long = System.currentTimeMillis()
 ): UserEntity {
     return UserEntity(
-        id = localId,
         serverId = id,
         login = login,
         password = password,

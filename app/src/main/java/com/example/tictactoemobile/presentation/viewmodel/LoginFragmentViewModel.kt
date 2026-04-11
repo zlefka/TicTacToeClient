@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.tictactoemobile.data.repository.AuthRepository
-import com.example.tictactoemobile.presentation.mapper.toViewData
+import com.example.tictactoemobile.presentation.mapper.toItemViewData
 import kotlinx.coroutines.launch
 
 class LoginFragmentViewModel(private val repository: AuthRepository): ViewModel() {
@@ -26,7 +26,7 @@ class LoginFragmentViewModel(private val repository: AuthRepository): ViewModel(
             try {
                 val user = repository.login(login, password)
                 if (user != null) {
-                    val viewData = user.toViewData()
+                    val viewData = user.toItemViewData()
                     _state.value = StatesOfLogin.Success(viewData)
                 } else _state.value = StatesOfLogin.Error("User is not found")
             } catch (e: Exception) {
