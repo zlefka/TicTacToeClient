@@ -5,7 +5,7 @@ import androidx.room.RoomDatabase
 import com.example.tic_tac_toe_mobile.data.entity.*
 
 @Database(
-    version = 2,
+    version = 5,
     entities = [
         CurrentUserEntity::class,
         GameEntity::class,

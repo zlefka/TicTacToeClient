@@ -42,9 +42,9 @@ class DatabaseService @Inject constructor(
         gameDao.update(game)
     }
 
-    suspend fun insertUser(user: UserEntity): Long {
-        Log.d("DB", "INSERT USER: " + user.id);
-        return userDao.insert(user)
+    suspend fun insertUser(user: UserEntity) {
+        Log.d("DB", "INSERT USER: " + user.serverId);
+        userDao.insert(user)
     }
 
     suspend fun updateUser(user: UserEntity) {
@@ -63,7 +63,7 @@ class DatabaseService @Inject constructor(
         return userDao.getUserByServerId(userId)
     }
 
-    suspend fun getUserById(userId: Long): UserEntity? {
+    suspend fun getUserById(userId: String): UserEntity? {
         return userDao.getUserById(userId)
     }
 

@@ -1,7 +1,10 @@
 package com.example.tictactoemobile.data.repository
 
+import android.util.Log
 import com.example.tic_tac_toe_mobile.data.db.service.DatabaseService
+import com.example.tic_tac_toe_mobile.data.entity.UserEntity
 import com.example.tic_tac_toe_mobile.data.repository.RemoteDataSource
+import com.example.tictactoemobile.data.dto.GameRequestDto
 import com.example.tictactoemobile.data.mapper.toDomain
 import com.example.tictactoemobile.data.mapper.toDto
 import com.example.tictactoemobile.data.mapper.toEntity
@@ -27,14 +30,44 @@ class GameRepository(
         }
     }
 
-    suspend fun createGame(): Game? {
-        val newGame = remoteDataSource.createGame() ?: return null
-        val gameDomain = newGame.toDomain()
-        val gameEntity = gameDomain.toEntity()
-        databaseService.saveGame(gameEntity)
-        return gameDomain
+    suspend fun createGame(playerSymbol: String, isBot: Boolean): Game? {
+        // Создаём DTO для запроса
+        val request = GameRequestDto(playerSymbol, isBot)
+        Log.i("create game", "request created")
 
+        // Запрос на сервер
+        val newGameDto = remoteDataSource.createGame(request) ?: return null
+        Log.i("GAME_DEBUG", "DTO from server: $newGameDto")
+
+        // Преобразуем в доменную модель
+        val newGame = newGameDto.toDomain()
+        Log.i("GAME_DEBUG", "p1=${newGame.player1Id}, p2=${newGame.player2Id}, winner=${newGame.winnerId}")
+
+        // Проверяем и вставляем пользователей, чтобы Foreign key не падал
+        ensureUserExists(newGame.player1Id)
+        newGame.player2Id?.let { ensureUserExists(it) } // если второй игрок есть
+        Log.i("create game", "users checked")
+        // Преобразуем в Entity и сохраняем в базу
+        val gameEntity = newGame.toEntity()
+        Log.i(
+            "GAME_DEBUG",
+            "ENTITY GAME: player1=${gameEntity.player1}, player2=${gameEntity.player2}, winner=${gameEntity.winner}"
+        )
+        databaseService.saveGame(gameEntity)
+
+        return newGame
     }
+
+    private suspend fun ensureUserExists(serverId: String) {
+        databaseService.insertUser(
+            UserEntity(
+                serverId = serverId,
+                login = serverId,
+                password = ""
+            )
+        )
+    }
+
 
     suspend fun joinGame(id: String): Game? {
         val join = remoteDataSource.joinGame(id)
@@ -51,10 +84,10 @@ class GameRepository(
 
     suspend fun getAvailableGames(): List<Game> {
         val games = remoteDataSource.availableGames()
-        return if(games != null) {
+        return if (games != null) {
             val domainGames = games.map { it.toDomain() }
             val gameEntities = domainGames.map { it.toEntity() }
-            gameEntities.forEach{databaseService.saveGame(it)}
+            gameEntities.forEach { databaseService.saveGame(it) }
             domainGames
         } else {
             val gamesList = databaseService.getGamesByStatus("WAITING")

@@ -3,15 +3,18 @@ package com.example.tic_tac_toe_mobile.data.repository
 import android.util.Log
 import com.example.tic_tac_toe_mobile.data.api.GameApi
 import com.example.tic_tac_toe_mobile.data.dto.*
+import com.example.tictactoemobile.data.dto.GameRequestDto
 import javax.inject.Inject
 
 private const val TAG = "GameService"
 
 class RemoteDataSource @Inject constructor (private val gameApi: GameApi) {
 
-    suspend fun createGame(): GameDto? {
+    suspend fun createGame(request: GameRequestDto): GameDto? {
         return try {
-            gameApi.newGame()
+            Log.i("create game", "remote data source request sent")
+
+            gameApi.newGame(request)
         } catch (e: java.lang.Exception) {
             Log.e(TAG, "Can't create new game", e)
             null
