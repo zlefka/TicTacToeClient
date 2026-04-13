@@ -31,23 +31,16 @@ class GameRepository(
     }
 
     suspend fun createGame(playerSymbol: String, isBot: Boolean): Game? {
-        // Создаём DTO для запроса
         val request = GameRequestDto(playerSymbol, isBot)
         Log.i("create game", "request created")
 
-        // Запрос на сервер
         val newGameDto = remoteDataSource.createGame(request) ?: return null
         Log.i("GAME_DEBUG", "DTO from server: $newGameDto")
 
-        // Преобразуем в доменную модель
         val newGame = newGameDto.toDomain()
         Log.i("GAME_DEBUG", "p1=${newGame.player1Id}, p2=${newGame.player2Id}, winner=${newGame.winnerId}")
-
-        // Проверяем и вставляем пользователей, чтобы Foreign key не падал
         ensureUserExists(newGame.player1Id)
-        newGame.player2Id?.let { ensureUserExists(it) } // если второй игрок есть
         Log.i("create game", "users checked")
-        // Преобразуем в Entity и сохраняем в базу
         val gameEntity = newGame.toEntity()
         Log.i(
             "GAME_DEBUG",
