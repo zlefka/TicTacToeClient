@@ -10,7 +10,7 @@ fun GameDto.toDomain(): Game {
         id = id,
         board = board.cells,
         player1Id = player1,
-        player2Id = player2.takeIf { it.isNotBlank() },
+        player2Id = player2,
         currentTurnId = currentTurn,
         isTwoPlayers = isTwoPlayers,
         status = status,
@@ -23,7 +23,7 @@ fun Game.toDto(): GameDto {
         id = id,
         board = com.example.tic_tac_toe_mobile.data.dto.BoardDto(cells = board),
         player1 = player1Id,
-        player2 = player2Id.orEmpty(),
+        player2 = player2Id,
         currentTurn = currentTurnId,
         isTwoPlayers = isTwoPlayers,
         status = status,
@@ -34,11 +34,11 @@ fun Game.toDto(): GameDto {
 fun GameEntity.toDomain(): Game {
     return Game(
         id = serverGameId ?: gameId.toString(),
-        board = stringToBoard(this.boardState)    ,
+        board = stringToBoard(this.boardState),
         player1Id = player1,
-        player2Id = player2.takeIf { it.isNotBlank() },
+        player2Id = player2,
         currentTurnId = currentTurn,
-        isTwoPlayers = player2.isNotBlank(),
+        isTwoPlayers = player2?.isNotBlank() ?: false,
         status = status,
         winnerId = winner
     )
@@ -53,7 +53,7 @@ fun Game.toEntity(
         gameId = localId,
         serverGameId = id,
         player1 = player1Id,
-        player2 = player2Id.orEmpty(),
+        player2 = player2Id,
         boardState = boardToString(this.board) ,
         currentTurn = currentTurnId,
         winner = winnerId,

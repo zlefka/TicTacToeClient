@@ -5,7 +5,7 @@ data class Game(
     val board: List<List<Int>>,
     val player1Id: String,
     val player2Id: String?,
-    val currentTurnId: String,
+    val currentTurnId: String?,
     val isTwoPlayers: Boolean,
     val status: String,
     val winnerId: String?
