@@ -5,7 +5,7 @@
     <string name="shr_hint_username">Username</string>
     <string name="shr_hint_password">Password</string>
     <string name="x_symbol" translatable="false">X symbol</string>
-    <string name="tic_tac_toe">Tic Tac Toe</string>
+    <string name="tic_tac_toe" translatable="false">Tic Tac Toe</string>
     <string name="o_symbol" translatable="false">O symbol</string>
     <string name="sign_in_to_start_playing">Sign in to start playing</string>
     <string name="login">Login</string>
@@ -25,4 +25,34 @@
     <string name="create_game_prompt">Create a new game to start playing</string>
     <string name="waiting_for_player">Waiting for player</string>
     <string name="choose_options">Choose your options</string>
+    <string name="current_game">Current game</string>
+    <string name="current_game_subtitle">Follow the match and keep your next move in sight</string>
+    <string name="current_turn">Current turn</string>
+    <string name="game_status">Game status</string>
+    <string name="player">Player</string>
+    <string name="opponent">Opponent</string>
+    <string name="plays_as_x">Plays as X</string>
+    <string name="plays_as_o">Plays as O</string>
+    <string name="play_with_bot">Play with bot</string>
+    <string name="board_ready_hint">Board overview</string>
+    <string name="refresh_game">Refresh game</string>
+    <string name="back_to_games">All games</string>
+    <string name="back_to_games_arrow">← Back to games</string>
+    <string name="your_turn">Your turn</string>
+    <string name="status_waiting">Waiting</string>
+    <string name="game_sync_coming_soon">Live game sync will be connected next</string>
+    <string name="current_game_return">← Return</string>
+    <string name="let_s_play">Let\'s play!</string>
+    <string name="vs" translatable="false">VS</string>
+    <string name="status_waiting_players">Waiting for players</string>
+    <string name="status_victory">Victory</string>
+    <string name="status_defeat">Defeat</string>
+    <string name="status_draw">Draw</string>
+    <string name="status_your_turn">Your turn</string>
+    <string name="status_opponent_turn">It\'s %1$s turn</string>
+    <string name="repeat_your_password">Repeat your password</string>
+    <string name="register_acc">Register</string>
+    <string name="refresh">Refresh</string>
+    <string name="or">OR</string>
+    <string name="two_players">Two players</string>
 </resources>

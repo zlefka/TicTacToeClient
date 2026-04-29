@@ -34,13 +34,8 @@ class RemoteDataSource @Inject constructor (private val gameApi: GameApi) {
         }
     }
 
-    suspend fun getGame(id: String): GameDto? {
-        return try {
-            gameApi.getGameById(id)
-        } catch (e: java.lang.Exception) {
-            Log.e(TAG, "Can't get the game", e)
-            null
-        }
+    suspend fun getGame(id: String): GameDto {
+        return gameApi.getGameById(id)
     }
 
     suspend fun availableGames(): List<GameDto>? {

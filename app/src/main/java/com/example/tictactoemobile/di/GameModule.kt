@@ -11,6 +11,7 @@ import javax.inject.Singleton
 @Module
 class GameApiModule {
     @Provides
+    @Singleton
     fun provideGameApi(sessionManager: SessionManager): GameApi {
         val provider = {
             Pair(sessionManager.login, sessionManager.password)

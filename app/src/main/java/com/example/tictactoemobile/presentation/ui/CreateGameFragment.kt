@@ -45,7 +45,7 @@ class CreateGameFragment : Fragment() {
                 is StatesOfCreatingGames.Success -> {
                     binding.progressBar.isVisible = false
                     Toast.makeText(activity, "Game created!", Toast.LENGTH_SHORT).show()
-                    val action = CreateGameFragmentDirections.actionCreateGameFragmentToCurrentGameFragment()
+                    val action = CreateGameFragmentDirections.actionCreateGameFragmentToCurrentGameFragment(newValue.game.id)
                     view.findNavController().navigate(action)
                 }
                 is StatesOfCreatingGames.Error -> {

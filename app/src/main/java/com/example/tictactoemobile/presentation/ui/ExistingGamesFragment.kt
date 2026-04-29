@@ -29,7 +29,9 @@ class ExistingGamesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentExisitingGamesBinding.inflate(inflater, container, false)
-        adapter = ItemAdapter()
+        adapter = ItemAdapter { item ->
+            viewModel.joinGame(item.id)
+        }
         binding.recyclerViewGames.adapter = adapter
         binding.recyclerViewGames.layoutManager = LinearLayoutManager(requireContext())
         val view = binding.root
@@ -44,7 +46,7 @@ class ExistingGamesFragment : Fragment() {
 
         viewModel.games.observe(viewLifecycleOwner, Observer { newValue ->
             adapter.setItems(newValue)
-            
+
             binding.emptyStateLayout.visibility =
                 if (newValue.isEmpty()) View.VISIBLE else View.GONE
 
@@ -55,9 +57,18 @@ class ExistingGamesFragment : Fragment() {
             Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
             binding.swipeRefreshLayout.isRefreshing = false
         })
+        viewModel.joinCompleted.observe(viewLifecycleOwner) { join ->
+            if (join != null) {
+                val action =
+                    ExistingGamesFragmentDirections.actionExistingGamesFragmentToCurrentGameFragment(join)
+                view.findNavController().navigate(action)
+                viewModel.onJoinNavigated()
+            }
+        }
 
         viewModel.logoutCompleted.observe(viewLifecycleOwner, Observer {
-            val action = ExistingGamesFragmentDirections.actionExistingGamesFragmentToLoginFragment()
+            val action =
+                ExistingGamesFragmentDirections.actionExistingGamesFragmentToLoginFragment()
             view.findNavController().navigate(action)
         })
 
@@ -68,8 +79,13 @@ class ExistingGamesFragment : Fragment() {
             viewModel.logout()
         }
 
+        binding.buttonRefresh.setOnClickListener {
+            viewModel.getGames()
+        }
+
         binding.buttonCreateGame.setOnClickListener {
-            val action = ExistingGamesFragmentDirections.actionExistingGamesFragmentToCreateGameFragment()
+            val action =
+                ExistingGamesFragmentDirections.actionExistingGamesFragmentToCreateGameFragment()
             view.findNavController().navigate(action)
         }
 

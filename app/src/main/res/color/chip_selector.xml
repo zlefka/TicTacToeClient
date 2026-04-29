@@ -2,9 +2,9 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- выбран -->
-    <item android:color="@color/elements" android:state_checked="true"/>
+    <item android:color="?attr/colorPrimary" android:state_checked="true"/>
 
     <!-- обычный -->
-    <item android:color="@color/gray"/>
+    <item android:color="?attr/colorSecondary"/>
 
 </selector>

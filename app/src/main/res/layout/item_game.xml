@@ -14,7 +14,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="?attr/colorSurface"
         android:orientation="vertical"
         android:padding="12dp">
 
@@ -36,7 +36,7 @@
                     android:layout_width="28dp"
                     android:layout_height="28dp"
                     android:src="@drawable/ic_cross"
-                    app:tint="@color/white"
+                    app:tint="?attr/colorOnPrimary"
                     android:contentDescription="Game icon" />
 
             </LinearLayout>
@@ -53,7 +53,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Created by: Player1"
-                    android:textColor="@color/background"
+                    android:textColor="?attr/colorPrimaryVariant"
                     android:textSize="14sp"
                     android:textStyle="bold" />
 
@@ -62,7 +62,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="ID: 123e4567-e89b"
-                    android:textColor="@color/background"
+                    android:textColor="?attr/colorPrimaryVariant"
                     android:textSize="11sp"
                     android:alpha="0.7"
                     android:layout_marginTop="2dp"
@@ -84,7 +84,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/purple_200"
+            android:background="?attr/colorPrimaryVariant"
             android:alpha="0.3"
             android:layout_marginBottom="8dp" />
 
@@ -104,7 +104,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/waiting_for_player"
-                android:textColor="@color/teal_700"
+                android:textColor="?attr/colorPrimaryVariant"
                 android:textSize="13sp"
                 android:textStyle="bold" />
 

@@ -10,8 +10,6 @@ import com.example.tictactoemobile.presentation.mapper.toViewData
 import kotlinx.coroutines.launch
 
 class CreateGameFragmentViewModel(private val repository: GameRepository): ViewModel() {
-    private val _error = MutableLiveData<String>()
-    val error: LiveData<String> get() = _error
 
     private val _state = MutableLiveData<StatesOfCreatingGames>()
     val state: LiveData<StatesOfCreatingGames> get() = _state

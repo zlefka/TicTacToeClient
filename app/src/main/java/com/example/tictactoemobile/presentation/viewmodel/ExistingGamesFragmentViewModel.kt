@@ -17,17 +17,49 @@ class ExistingGamesFragmentViewModel(private val repository: GameRepository) : V
     val error: LiveData<String> get() = _error
 
     private val _logoutCompleted = MutableLiveData<Unit>()
-    val logoutCompleted: LiveData<Unit> = _logoutCompleted
+    val logoutCompleted: LiveData<Unit> get() = _logoutCompleted
 
-    fun getGames(){
+    private val _joinCompleted = MutableLiveData<String?>()
+    val joinCompleted: LiveData<String?> get() = _joinCompleted
+
+    fun getGames() {
         viewModelScope.launch {
             try {
                 val gamesRepository = repository.getAvailableGames()
-                _games.value = gamesRepository.map {it.toItemViewData()}
+                val currentUserId = repository.getCurrentUserId()
+
+                val filteredGames = gamesRepository.filter { game ->
+                    game.status == "WAITING" &&
+                            game.player2Id == null &&
+                            game.player1Id != currentUserId
+                }
+
+                val items = filteredGames.map { game ->
+                    val creatorLogin = repository.getUserLoginById(game.player1Id) ?: game.player1Id
+                    ItemViewData(id = game.id, login = creatorLogin)
+                }
+
+                _games.value = items
             } catch (e: Exception) {
                 _error.value = e.message ?: "Unknown error"
             }
         }
+    }
+
+    fun joinGame(gameId: String) {
+        viewModelScope.launch {
+            try {
+                val join = repository.joinGame(gameId)
+                if (join != null) {
+                    _joinCompleted.value = join.id
+                } else {
+                    _error.value = "Can't join the game"
+                }
+            } catch (e: Exception) {
+                _error.value = e.message ?: "Unknown error"
+            }
+        }
+
     }
 
     fun logout() {
@@ -35,6 +67,10 @@ class ExistingGamesFragmentViewModel(private val repository: GameRepository) : V
             repository.clearDatabase()
             _logoutCompleted.postValue(Unit)
         }
+    }
+
+    fun onJoinNavigated() {
+        _joinCompleted.value = null
     }
 
 }

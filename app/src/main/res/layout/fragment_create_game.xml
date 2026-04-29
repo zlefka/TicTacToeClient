@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background">
+    android:background="?attr/colorPrimaryVariant">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,7 +23,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/milk"
+                android:background="?attr/colorSurface"
                 android:orientation="vertical"
                 android:padding="32dp">
 
@@ -45,7 +45,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="16dp"
                         android:text="@string/create_game"
-                        android:textColor="@color/background"
+                        android:textColor="?attr/colorPrimaryVariant"
                         android:textSize="32sp"
                         android:textStyle="bold" />
 
@@ -63,7 +63,7 @@
                     android:layout_marginBottom="32dp"
                     android:text="@string/choose_options"
                     android:textAlignment="center"
-                    android:textColor="@color/background"
+                    android:textColor="?attr/colorPrimaryVariant"
                     android:textSize="16sp" />
 
                 <com.google.android.material.chip.ChipGroup
@@ -81,14 +81,14 @@
                         style="@style/Widget.MaterialComponents.Chip.Choice"
                         android:text="X"
                         app:chipBackgroundColor="@color/chip_selector"
-                        android:textColor="@color/background"/>
+                        android:textColor="?attr/colorPrimaryVariant"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
-                        android:text="OR"
-                        android:textColor="@color/background"/>
+                        android:text="@string/or"
+                        android:textColor="?attr/colorPrimaryVariant"/>
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chipO"
@@ -97,7 +97,7 @@
                         style="@style/Widget.MaterialComponents.Chip.Choice"
                         android:text="O"
                         app:chipBackgroundColor="@color/chip_selector"
-                        android:textColor="@color/background"/>
+                        android:textColor="?attr/colorPrimaryVariant"/>
 
                 </com.google.android.material.chip.ChipGroup>
 
@@ -114,25 +114,25 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/Widget.MaterialComponents.Chip.Choice"
-                        android:text="Two players"
+                        android:text="@string/two_players"
                         app:chipBackgroundColor="@color/chip_selector"
-                        android:textColor="@color/background"/>
+                        android:textColor="?attr/colorPrimaryVariant"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
-                        android:text="OR"
-                        android:textColor="@color/background"/>
+                        android:text="@string/or"
+                        android:textColor="?attr/colorPrimaryVariant"/>
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chipBot"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/Widget.MaterialComponents.Chip.Choice"
-                        android:text="Play with bot"
+                        android:text="@string/play_with_bot"
                         app:chipBackgroundColor="@color/chip_selector"
-                        android:textColor="@color/background"/>
+                        android:textColor="?attr/colorPrimaryVariant"/>
 
                 </com.google.android.material.chip.ChipGroup>
 
@@ -143,9 +143,9 @@
                     android:layout_height="56dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="16dp"
-                    android:backgroundTint="@color/elements"
+                    android:backgroundTint="?attr/colorPrimary"
                     android:text="@string/create_game"
-                    android:textColor="@color/white"
+                    android:textColor="?attr/colorOnBackground"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     app:cornerRadius="12dp" />
@@ -159,7 +159,7 @@
                     android:focusable="true"
                     android:text="@string/available_games"
                     android:textAlignment="center"
-                    android:textColor="@color/elements"
+                    android:textColor="?attr/colorPrimary"
                     android:textSize="17sp"
                     android:textStyle="bold" />
 

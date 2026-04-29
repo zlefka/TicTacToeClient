@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background">
+    android:background="?attr/colorPrimaryVariant">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,7 +23,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/milk"
+                android:background="?attr/colorSurface"
                 android:orientation="vertical"
                 android:padding="32dp">
 
@@ -35,7 +35,7 @@
                     android:focusable="true"
                     android:text="← Return"
                     android:textAlignment="viewStart"
-                    android:textColor="@color/elements"
+                    android:textColor="?attr/colorPrimary"
                     android:textSize="17sp"
                     android:textStyle="bold"
                     android:layout_marginBottom="16dp" />
@@ -51,7 +51,6 @@
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:src="@drawable/ic_circle"
-                        app:tint="@color/teal_200"
                         android:contentDescription="@string/x_symbol" />
 
                     <TextView
@@ -59,7 +58,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="12dp"
                         android:text="@string/create_account"
-                        android:textColor="@color/background"
+                        android:textColor="?attr/colorPrimaryVariant"
                         android:textSize="28sp"
                         android:textStyle="bold" />
 
@@ -67,91 +66,72 @@
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:src="@drawable/ic_cross"
-                        app:tint="@color/teal_200"
                         android:contentDescription="@string/o_symbol" />
 
                 </LinearLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:text="@string/login"
-                    android:textColor="@color/background"
-                    android:textSize="14sp" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="24dp">
+                    app:boxBackgroundMode="filled"
+                    app:boxBackgroundColor="?attr/colorSurface"
+                    app:boxCornerRadiusTopStart="12dp"
+                    app:boxCornerRadiusTopEnd="12dp"
+                    app:boxCornerRadiusBottomStart="12dp"
+                    app:boxCornerRadiusBottomEnd="12dp"
+                    android:paddingBottom="18dp">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etLogin"
                         android:layout_width="match_parent"
                         android:layout_height="56dp"
-                        android:background="@drawable/input_shape"
-                        android:hint="Enter your login"
+                        android:hint="@string/enter_your_login"
                         android:inputType="text"
-                        android:paddingHorizontal="16dp"
-                        android:textColor="@color/black"
-                        android:textColorHint="#99233D4D"
-                        android:textSize="16sp" />
+                        android:textColor="?attr/colorOnSurface"
+                        android:textColorHint="?attr/colorPrimaryVariant"/>
                 </com.google.android.material.textfield.TextInputLayout>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:text="@string/password"
-                    android:textColor="@color/background"
-                    android:textSize="14sp" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="24dp"
-                    app:endIconMode="password_toggle"
-                    app:endIconTint="@color/teal_200">
+                    app:boxBackgroundMode="filled"
+                    app:boxBackgroundColor="?attr/colorSurface"
+                    app:boxCornerRadiusTopStart="12dp"
+                    app:boxCornerRadiusTopEnd="12dp"
+                    app:boxCornerRadiusBottomStart="12dp"
+                    app:boxCornerRadiusBottomEnd="12dp"
+                    android:paddingBottom="18dp">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etPassword"
                         android:layout_width="match_parent"
                         android:layout_height="56dp"
-                        android:background="@drawable/input_shape"
-                        android:hint="Enter your password"
+                        android:hint="@string/enter_your_password"
                         android:inputType="textPassword"
-                        android:paddingHorizontal="16dp"
-                        android:textColor="@color/black"
-                        android:textColorHint="#99233D4D"
-                        android:textSize="16sp" />
+                        android:textColor="?attr/colorOnSecondary"
+                        android:textColorHint="?attr/colorPrimaryVariant" />
                 </com.google.android.material.textfield.TextInputLayout>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:text="@string/confirm_password"
-                    android:textColor="@color/background"
-                    android:textSize="14sp" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="24dp"
-                    app:endIconMode="password_toggle"
-                    app:endIconTint="@color/teal_200">
+                    app:boxBackgroundMode="filled"
+                    app:boxBackgroundColor="?attr/colorSurface"
+                    app:boxCornerRadiusTopStart="12dp"
+                    app:boxCornerRadiusTopEnd="12dp"
+                    app:boxCornerRadiusBottomStart="12dp"
+                    app:boxCornerRadiusBottomEnd="12dp"
+                    android:paddingBottom="18dp">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etConfirmPassword"
                         android:layout_width="match_parent"
                         android:layout_height="56dp"
-                        android:background="@drawable/input_shape"
-                        android:hint="Repeat your password"
+                        android:hint="@string/repeat_your_password"
                         android:inputType="textPassword"
-                        android:paddingHorizontal="16dp"
-                        android:textColor="@color/black"
-                        android:textColorHint="#99233D4D"
-                        android:textSize="16sp" />
+                        android:textColor="?attr/colorOnSecondary"
+                        android:textColorHint="?attr/colorPrimaryVariant" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.button.MaterialButton
@@ -159,9 +139,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
                     android:layout_marginBottom="16dp"
-                    android:backgroundTint="@color/elements"
-                    android:text="@string/register"
-                    android:textColor="@color/white"
+                    android:backgroundTint="?attr/colorPrimary"
+                    android:text="@string/register_acc"
+                    android:textColor="?attr/colorOnPrimary"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     app:cornerRadius="8dp" />
@@ -172,7 +152,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/already_have_an_account_sign_in"
                     android:textAlignment="center"
-                    android:textColor="@color/teal_200"
+                    android:textColor="?attr/colorPrimary"
                     android:textSize="14sp"
                     android:clickable="true"
                     android:focusable="true" />
@@ -188,6 +168,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:visibility="gone"
-        android:indeterminateTint="@color/elements" />
+        android:indeterminateTint="?attr/colorPrimary" />
 
 </FrameLayout>
